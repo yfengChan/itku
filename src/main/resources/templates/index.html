@@ -7,27 +7,21 @@
 </head>
 <body>
 	<!-- fixed navigation bar -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
-					data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">project name</a>
-			</div>
-			<div class="navbar-collapse collapse" id="navbar">
-				<ul class="nav navbar-nav">
-					<li th:class="${category eq ALL} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=ALL)}">Home</a></li>
-					<li th:class="${category eq ALL} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=JAVA)}">JAVA</a></li>
+	<div id="itku-menu" class="navbar navbar-default " role="navigation">
+	    <div class="container">
+	        <div class="navbar-header"><a class="navbar-brand" href="#">Brand</a>
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+	            </button>
+	        </div>
+	        <div class="collapse navbar-collapse navbar-menubuilder">
+	            <ul class="nav navbar-nav">
+					<li th:class="${category eq 'ALL'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=ALL)}">Home</a></li>
+					<li th:class="${category eq 'JAVA'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=JAVA)}">JAVA</a></li>
 					<li><a href="#contact">Contact></a></li>
 				</ul>
-			</div>
-		</div>
-	</nav>
+	        </div>
+	    </div>
+	</div>
 	
 	<div class="container">
 		<!-- content part -->
@@ -37,8 +31,11 @@
 				<p th:text="${options[iter.index]} + '. ' + ${answer.content}"></p>
 			</div>
 			<button class="btn answerSection" th:id="'btn'+${examEntity.id}" th:attr="data-target='#'+${examEntity.id}">Show Answer</button>
-			<div th:id="${examEntity.id}" class="collapse alert alert-success" th:utext="${examEntity.answer}">
-				<strong th:if="${answer.correctOption eq true}" th:text="'The Answer is ' + ${options[iter.index]}"></strong>
+			<p></p>
+			<div th:id="${examEntity.id}" class="collapse alert alert-success" >
+				<div th:each="answer,iter:${examEntity.answers}">
+					<strong th:if="${answer.correctOption eq true}" th:text="'The Answer is ' + ${options[iter.index]}"></strong>
+				</div>
 				<div th:text="${examEntity.knowledgePoint}"></div>
 			</div>
 		</div>
@@ -46,7 +43,7 @@
 		<!-- pagination -->
 		<div class="text-center">
 			<nav aria-label="...">
-				<ul class="pagination">
+				<ul class="pagination" th:if="${examEntities.totalPages gt 0}">
 					<li th:class="${examEntities.number eq 0} ? 'page-item disabled' : 'page-item'">
 						<a class="page-link" href="javascript:void(0);" tabindex="-1" th:if="${examEntities.number eq 0}">&lt;&lt;</a>
 						<a class="page-link" th:href="@{${'/examinationItems'}(page=${examEntities.number - 1},pageSize=1)}"

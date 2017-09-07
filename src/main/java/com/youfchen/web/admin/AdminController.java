@@ -41,10 +41,11 @@ public class AdminController {
 	}
 	
 	@PostMapping(value="/addNewItem")
-	public void addItem(@ModelAttribute final QuestionEntity questionEntity){
+	public String addItem(@ModelAttribute final QuestionEntity questionEntity){
 		for (AnswerEntity answerEntity : questionEntity.getAnswers()) {
 			answerEntity.setQuestionEntity(questionEntity);
 		}
 		this.examiniationRepository.save(questionEntity);
+		return "maintenance";
 	}
 }

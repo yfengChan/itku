@@ -18,13 +18,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">project name</a>
+				<a class="navbar-brand" href="#">ITku</a>
 			</div>
 			<div class="navbar-collapse collapse" id="navbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact></a></li>
+					<li class="active"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=ALL)}" target="_blank">Home</a></li>
 				</ul>
 			</div>
 		</div>
@@ -32,8 +30,8 @@
 	
 	<!-- content -->
 	<div class="container">
-		<h2>Dynamic Tabs</h2>
-		<p>To Make the tabs toggle, add the data-toggle ........</p>
+		<h2>Maintenance Tabs</h2>
+		<p>Add and Maintenance Items here ........</p>
 		
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" href="#all">All</a></li>
@@ -45,7 +43,7 @@
 			<!-- home tab -->
 			<div  id="all" class="tab-pane fade in active">
 				<h3>Home</h3>
-				<p>sssssdfsxdf................</p>
+				<p>..........................</p>
 			</div>
 			<!-- example tab -->
 			<div id="example" class="tab-pane fade">
@@ -102,7 +100,7 @@
 							</table>
 						</fieldset>
 					</div>
-					<button type="submit" class="btn btn-default">Add</button>
+					<button type="submit" class="btn btn-primary">Add New Item</button>
 				</form>
 			</div>
 		</div>
@@ -112,5 +110,5 @@
 <script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/webjars/trumbowyg/2.5.1/dist/trumbowyg.min.js"></script>
-<script type="text/javascript" src="/js/itku.js"></script>
+<script type="text/javascript" src="/js/itku_maintenance.js"></script>
 </html>

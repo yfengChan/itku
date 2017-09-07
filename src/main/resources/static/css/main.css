@@ -1,4 +1,43 @@
-body{
+/* body{
 	min-height: 2000px;
 	padding-top: 70px;
+} */
+
+#itku-menu.navbar-default .navbar-brand {
+    color: rgba(255, 252, 252, 1);
+}
+#itku-menu.navbar-default {
+    font-size: 14px;
+    background-color: rgba(42, 143, 207, 1);
+    border-width: 1px;
+    border-radius: 1px;
+}
+#itku-menu.navbar-default .navbar-nav>li>a {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(248, 248, 248, 0);
+}
+#itku-menu.navbar-default .navbar-nav>li>a:hover,
+#itku-menu.navbar-default .navbar-nav>li>a:focus {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(53, 56, 51, 1);
+}
+#itku-menu.navbar-default .navbar-nav>.active>a,
+#itku-menu.navbar-default .navbar-nav>.active>a:hover,
+#itku-menu.navbar-default .navbar-nav>.active>a:focus {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(105, 107, 104, 1);
+}
+#itku-menu.navbar-default .navbar-toggle {
+    border-color: #696b68;
+}
+#itku-menu.navbar-default .navbar-toggle:hover,
+#itku-menu.navbar-default .navbar-toggle:focus {
+    background-color: #696b68;
+}
+#itku-menu.navbar-default .navbar-toggle .icon-bar {
+    background-color: #696b68;
+}
+#itku-menu.navbar-default .navbar-toggle:hover .icon-bar,
+#itku-menu.navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #2a8fcf;
 }

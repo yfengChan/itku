@@ -23,7 +23,7 @@ public class QuestionEntity implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	@Column(name="QUESTION",columnDefinition="CLOB NOT NULL")
+	@Column(name="QUESTION")
 	@Lob
 	private String question;
 	
