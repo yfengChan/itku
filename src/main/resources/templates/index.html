@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>itku</title>
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+	<!-- fixed navigation bar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+					data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">project name</a>
+			</div>
+			<div class="navbar-collapse collapse" id="navbar">
+				<ul class="nav navbar-nav">
+					<li th:class="${category eq ALL} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=ALL)}">Home</a></li>
+					<li th:class="${category eq ALL} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=JAVA)}">JAVA</a></li>
+					<li><a href="#contact">Contact></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="container">
+		<!-- content part -->
+		<div th:each="examEntity:${examEntities.content}">
+			<div th:utext="${examEntity.question}">Question</div>
+			<div th:each="answer,iter:${examEntity.answers}">
+				<p th:text="${options[iter.index]} + '. ' + ${answer.content}"></p>
+			</div>
+			<button class="btn answerSection" th:id="'btn'+${examEntity.id}" th:attr="data-target='#'+${examEntity.id}">Show Answer</button>
+			<div th:id="${examEntity.id}" class="collapse alert alert-success" th:utext="${examEntity.answer}">
+				<strong th:if="${answer.correctOption eq true}" th:text="'The Answer is ' + ${options[iter.index]}"></strong>
+				<div th:text="${examEntity.knowledgePoint}"></div>
+			</div>
+		</div>
+		
+		<!-- pagination -->
+		<div class="text-center">
+			<nav aria-label="...">
+				<ul class="pagination">
+					<li th:class="${examEntities.number eq 0} ? 'page-item disabled' : 'page-item'">
+						<a class="page-link" href="javascript:void(0);" tabindex="-1" th:if="${examEntities.number eq 0}">&lt;&lt;</a>
+						<a class="page-link" th:href="@{${'/examinationItems'}(page=${examEntities.number - 1},pageSize=1)}"
+							 tabindex="-1" th:if="${examEntities.number gt 0}">&lt;&lt;</a>
+					</li>
+					<li class="page-item" th:each="pageNo:${#numbers.sequence(0,examEntities.totalPages - 1)}"
+						 th:class="${examEntities.number eq pageNo} ? 'page-item active' : 'page-item'">
+						<a class="page-link" href="javascript:void(0);" th:if="${examEntities.number eq pageNo}" 
+							th:text="${pageNo + 1}">2<span class="sr-only">(current)</span></a>
+						<a class="page-link" th:href="@{${'/examinationItems'}(page=${pageNo},pageSize=1)}"
+							  th:if="${examEntities.number ne pageNo}" th:text="${pageNo + 1}">3</a>
+					</li>
+					<li th:class="${examEntities.number eq examEntities.totalPages - 1} ? 'page-item disabled' : 'page-item'">
+						<a class="page-link" href="javascript:void(0);" tabindex="-1" 
+							th:if="${examEntities.number eq examEntities.totalPages - 1}">&gt;&gt;</a>
+						<a class="page-link" th:href="@{${'/examinationItems'}(page=${examEntities.number + 1},pageSize=1)}" 
+							tabindex="-1" th:if="${examEntities.totalPages > 1 ? examEntities.number ne examEntities.totalPages - 1 : false}">&gt;&gt;</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/itku.js"></script>
+</html>

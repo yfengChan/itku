@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>itku</title>
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+	<div class="container">
+		<form action="#" th:action="@{/maintenancePage}" th:object="${userEntity}" method="post" role="form" class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="userName">Username:</label>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="userName" placeholder="Enter username" name="userName" th:field="*{userName}"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="pwd">Password:</label>
+				<div class="col-sm-5">
+					<input type="password" class="form-control" id="pwd" placeholder="Enter username" name="password" th:field="*{password}"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" th:text="${errorInfo}">Error Message</label>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">Login</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/webjars/trumbowyg/2.5.1/dist/trumbowyg.min.js"></script>
+<script type="text/javascript" src="/js/itku.js"></script>
+</html>

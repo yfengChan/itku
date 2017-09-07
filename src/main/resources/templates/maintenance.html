@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>itku</title>
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/webjars/trumbowyg/2.5.1/dist/ui/trumbowyg.min.css" />
+<link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+	<!-- fixed navigation bar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+					data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">project name</a>
+			</div>
+			<div class="navbar-collapse collapse" id="navbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<!-- content -->
+	<div class="container">
+		<h2>Dynamic Tabs</h2>
+		<p>To Make the tabs toggle, add the data-toggle ........</p>
+		
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#all">All</a></li>
+			<li><a data-toggle="tab" href="#example">Example</a></li>
+			<li><a data-toggle="tab" href="#newItem">New Item</a></li>
+		</ul>
+		
+		<div class="tab-content">
+			<!-- home tab -->
+			<div  id="all" class="tab-pane fade in active">
+				<h3>Home</h3>
+				<p>sssssdfsxdf................</p>
+			</div>
+			<!-- example tab -->
+			<div id="example" class="tab-pane fade">
+				<p>Take below as example to add new item</p>
+				<div class="panel panel-default">
+					<div class="panel-heading">example</div>
+					<div class="panel-body">
+						<pre>
+							<code>
+							
+							</code>
+						</pre>
+					</div>
+				</div>
+			</div>
+			<!-- new item tab -->
+			<div id="newItem" class="tab-pane fade">
+				<label for="exampleTextarea">Edit Tool:</label>
+				<div id="editorDiv"></div>
+				<form action="#" th:action="@{/addNewItem}" th:object="${questionEntity}" method="post" role="form" class="form-horizontal">
+					<div class="form-group">
+						<label for="exampleTextarea">Question:</label>
+						<textarea class="form-control" id="questionPart" rows="5" name="question" th:field="*{question}"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="exampleTextarea">knowledgePoint:</label>
+						<input type="text" class="form-control" id="knowledgePointPart" rows="5" name="knowledgepoint" th:field="*{knowledgePoint}"></input>
+					</div>
+					<div class="form-group">
+						<label for="exampleTextarea">Category:</label>
+						<input type="text" class="form-control" id="categoryPart" rows="5" name="category" th:field="*{category}"></input>
+					</div>
+					<div class="form-group">
+						<fieldset>
+							<legend>Answer Section</legend>
+							<button type="button" class="btn btn-primary" id="addNewAnswer">Add Answer</button>
+							<table class="table" id="answerTable">
+								<thead>
+									<tr>
+									<th class="col-xs-10">Content</th>
+									<th class="col-xs-1">Is_Correct_Option</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input type="text" name="answers[0].content" class="form-control" required="required"></input>
+										</td>
+										<td>
+											<input type="checkbox" name="answers[0].correctOption" class="form-control"></input>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</fieldset>
+					</div>
+					<button type="submit" class="btn btn-default">Add</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/webjars/trumbowyg/2.5.1/dist/trumbowyg.min.js"></script>
+<script type="text/javascript" src="/js/itku.js"></script>
+</html>
