@@ -25,14 +25,18 @@ public class AdminController {
 	
 	@GetMapping(value="/login")
 	public String adminPage(final Model model){
-		model.addAttribute("userEntity",new UserEntity());
+		return "login";
+	}
+	
+	@PostMapping(value="/login")
+	public String fail(final Model model){
 		return "login";
 	}
 	
 	@PostMapping(value="/maintenancePage")
 	public String authorize(@ModelAttribute final UserEntity userEntity,final Model model){
 		model.addAttribute("questionEntity", new QuestionEntity());
-		UserEntity returnUser = userRepository.findByUserNameAndPassword(userEntity.getUserName(), userEntity.getPassword());
+		UserEntity returnUser = userRepository.findByUsernameAndPassword(userEntity.getUsername(), userEntity.getPassword());
 		if (returnUser != null && "admin".equalsIgnoreCase(returnUser.getRole())) {
 			return "maintenance";
 		}

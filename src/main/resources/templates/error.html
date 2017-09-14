@@ -1,25 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>itku</title>
-<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/css/main.css" />
+<head th:include="fragment/header::header">
 </head>
 <body>
-	<div id="itku-menu" class="navbar navbar-default " role="navigation">
-	    <div class="container">
-	        <div class="navbar-header"><a class="navbar-brand" href="#">Brand</a>
-	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-	            </button>
-	        </div>
-	        <div class="collapse navbar-collapse navbar-menubuilder">
-	            <ul class="nav navbar-nav">
-					<li th:class="${category eq 'ALL'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=ALL)}">Home</a></li>
-					<li th:class="${category eq 'JAVA'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=JAVA)}">JAVA</a></li>
-					<li><a href="#contact">Contact></a></li>
-				</ul>
-	        </div>
-	    </div>
+	<!-- fixed navigation bar -->
+	<div id="itku-menu" class="navbar navbar-default " role="navigation" th:include="fragment/navigation::navigation">
 	</div>
 	
 	<div class="container">
@@ -27,7 +12,6 @@
 	</div>
 </body>
 
-<script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/itku.js"></script>
+
+<th:block th:include="fragment/scripts::scripts"></th:block>
 </html>

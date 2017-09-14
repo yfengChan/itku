@@ -1,0 +1,17 @@
+<div id="itku-menu" class="navbar navbar-default " role="navigation" th:fragment="navigation">
+	    <div class="container">
+	        <div class="navbar-header"><a class="navbar-brand" href="#">ITku</a>
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+	            </button>
+	        </div>
+	        <div class="collapse navbar-collapse navbar-menubuilder">
+	            <ul class="nav navbar-nav">
+					<li th:class="${category eq 'ALL'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=10,category=ALL)}">Home</a></li>
+					<li th:class="${category eq 'JAVA'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=10,category=JAVA)}">JAVA</a></li>
+					<li th:class="${category eq 'JVM'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=10,category=JVM)}">JVM</a></li>
+					<li th:class="${category eq 'Database'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=10,category=Database)}">Database</a></li>
+					<li th:class="${category eq 'Linux'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=10,category=Linux)}">Linux</a></li>
+				</ul>
+	        </div>
+	    </div>
+	</div>

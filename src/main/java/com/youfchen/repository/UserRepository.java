@@ -6,6 +6,8 @@ import com.youfchen.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	
-	UserEntity findByUserNameAndPassword(String userName,String password);
+	UserEntity findByUsernameAndPassword(String username,String password);
+	
+	UserEntity findByUsername(String username);
 
 }

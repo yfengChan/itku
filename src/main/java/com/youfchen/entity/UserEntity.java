@@ -20,7 +20,7 @@ public class UserEntity implements Serializable{
 	private long id;
 	
 	@Column(name="USER_NAME",length=32)
-	private String userName;
+	private String username;
 	
 	@Column(name="PASSWORD",length=32)
 	private String password;
@@ -36,12 +36,12 @@ public class UserEntity implements Serializable{
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

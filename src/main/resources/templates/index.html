@@ -1,26 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>itku</title>
-<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/css/main.css" />
+<head th:include="fragment/header::header">
 </head>
 <body>
 	<!-- fixed navigation bar -->
-	<div id="itku-menu" class="navbar navbar-default " role="navigation">
-	    <div class="container">
-	        <div class="navbar-header"><a class="navbar-brand" href="#">Brand</a>
-	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-	            </button>
-	        </div>
-	        <div class="collapse navbar-collapse navbar-menubuilder">
-	            <ul class="nav navbar-nav">
-					<li th:class="${category eq 'ALL'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=ALL)}">Home</a></li>
-					<li th:class="${category eq 'JAVA'} ? active : ''"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=JAVA)}">JAVA</a></li>
-					<li><a href="#contact">Contact></a></li>
-				</ul>
-	        </div>
-	    </div>
+	<div id="itku-menu" class="navbar navbar-default " role="navigation" th:include="fragment/navigation::navigation">
 	</div>
 	
 	<div class="container">
@@ -30,7 +14,7 @@
 			<div th:each="answer,iter:${examEntity.answers}">
 				<p th:text="${options[iter.index]} + '. ' + ${answer.content}"></p>
 			</div>
-			<button class="btn answerSection" th:id="'btn'+${examEntity.id}" th:attr="data-target='#'+${examEntity.id}">Show Answer</button>
+			<button class="btn btn-primary answerSection" th:id="'btn'+${examEntity.id}" th:attr="data-target='#'+${examEntity.id}">查看答案</button>
 			<p></p>
 			<div th:id="${examEntity.id}" class="collapse alert alert-success" >
 				<div th:each="answer,iter:${examEntity.answers}">
@@ -46,29 +30,32 @@
 				<ul class="pagination" th:if="${examEntities.totalPages gt 0}">
 					<li th:class="${examEntities.number eq 0} ? 'page-item disabled' : 'page-item'">
 						<a class="page-link" href="javascript:void(0);" tabindex="-1" th:if="${examEntities.number eq 0}">&lt;&lt;</a>
-						<a class="page-link" th:href="@{${'/examinationItems'}(page=${examEntities.number - 1},pageSize=1)}"
+						<a class="page-link" th:href="@{${'/examinationItems'}(page=${examEntities.number - 1},pageSize=10)}"
 							 tabindex="-1" th:if="${examEntities.number gt 0}">&lt;&lt;</a>
 					</li>
 					<li class="page-item" th:each="pageNo:${#numbers.sequence(0,examEntities.totalPages - 1)}"
 						 th:class="${examEntities.number eq pageNo} ? 'page-item active' : 'page-item'">
 						<a class="page-link" href="javascript:void(0);" th:if="${examEntities.number eq pageNo}" 
 							th:text="${pageNo + 1}">2<span class="sr-only">(current)</span></a>
-						<a class="page-link" th:href="@{${'/examinationItems'}(page=${pageNo},pageSize=1)}"
+						<a class="page-link" th:href="@{${'/examinationItems'}(page=${pageNo},pageSize=10)}"
 							  th:if="${examEntities.number ne pageNo}" th:text="${pageNo + 1}">3</a>
 					</li>
 					<li th:class="${examEntities.number eq examEntities.totalPages - 1} ? 'page-item disabled' : 'page-item'">
 						<a class="page-link" href="javascript:void(0);" tabindex="-1" 
 							th:if="${examEntities.number eq examEntities.totalPages - 1}">&gt;&gt;</a>
-						<a class="page-link" th:href="@{${'/examinationItems'}(page=${examEntities.number + 1},pageSize=1)}" 
+						<a class="page-link" th:href="@{${'/examinationItems'}(page=${examEntities.number + 1},pageSize=10)}" 
 							tabindex="-1" th:if="${examEntities.totalPages > 1 ? examEntities.number ne examEntities.totalPages - 1 : false}">&gt;&gt;</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 	</div>
+	
+	<!-- baidu share js-->
+	<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","weixin","tieba","sqq"],"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"6","bdPos":"right","bdTop":"100"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+	<!-- baidu share end -->
+	
 </body>
 
-<script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/itku.js"></script>
+<th:block th:include="fragment/scripts::scripts"></th:block>
 </html>

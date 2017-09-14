@@ -1,32 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>itku</title>
-<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/webjars/trumbowyg/2.5.1/dist/ui/trumbowyg.min.css" />
-<link rel="stylesheet" href="/css/main.css" />
+<head th:include="fragment/header::header">
 </head>
 <body>
 	<!-- fixed navigation bar -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
-					data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">ITku</a>
-			</div>
-			<div class="navbar-collapse collapse" id="navbar">
-				<ul class="nav navbar-nav">
-					<li class="active"><a th:href="@{'/examinationItems'(page=0,pageSize=1,category=ALL)}" target="_blank">Home</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<div id="itku-menu" class="navbar navbar-default " role="navigation" th:include="fragment/navigation::navigation">
+	</div>
 	
 	<!-- content -->
 	<div class="container">
@@ -107,8 +86,8 @@
 	</div>
 </body>
 
-<script type="text/javascript" src="/webjars/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/webjars/trumbowyg/2.5.1/dist/trumbowyg.min.js"></script>
-<script type="text/javascript" src="/js/itku_maintenance.js"></script>
+
+<th:block th:include="fragment/scripts::scripts"></th:block>
+<script type="text/javascript" th:src="@{/webjars/trumbowyg/2.5.1/dist/trumbowyg.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/itku_maintenance.js}"></script>
 </html>
